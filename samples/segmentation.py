@@ -59,12 +59,12 @@ class App:
             frame_idx = frame_idx + 1
             print(frame_idx)
 
-            cv.imshow('image', masked_image)
+            #cv.imshow('image', masked_image)
             out.write(masked_image)
 
-            ch = cv.waitKey(1)
-            if ch == 27:
-                break
+            #ch = cv.waitKey(1)
+            #if ch == 27:
+            #    break
 
         cap.release()
         out.release()
