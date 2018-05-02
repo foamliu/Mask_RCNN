@@ -260,7 +260,7 @@ def draw_rois(image, rois, refined_rois, mask, class_ids, class_names, limit=10)
                                   [:4].astype(np.int32), image.shape)
             masked_image = apply_mask(masked_image, m, color)
 
-    ax.imshow(masked_image)
+    #ax.imshow(masked_image)
 
     # Print stats
     print("Positive ROIs: ", class_ids[class_ids > 0].shape[0])

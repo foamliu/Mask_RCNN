@@ -29,6 +29,12 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
                'teddy bear', 'hair drier', 'toothbrush']
 
 
+def draw_str(dst, target, s):
+    x, y = target
+    cv.putText(dst, s, (x + 1, y + 1), cv.FONT_HERSHEY_PLAIN, 1.0, (0, 0, 0), thickness=2, lineType=cv.LINE_AA)
+    cv.putText(dst, s, (x, y), cv.FONT_HERSHEY_PLAIN, 1.0, (255, 255, 255), lineType=cv.LINE_AA)
+
+
 class App:
     def __init__(self):
         pass
@@ -52,19 +58,23 @@ class App:
                 break
 
             r = data[frame_idx]
+            num_persons = 0
 
-            masked_image = visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'],
-                                                       class_names, r['scores'])
+            if len(r['class_ids']) > 0:
+                num_persons = len([id for id in r['class_ids'] if id == 1])
+                image = visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'],
+                                                    class_names, r['scores'])
 
+            draw_str(image, (20, 20), '%d person(s) detected, frame_idx: %d.' % (num_persons, frame_idx))
             frame_idx = frame_idx + 1
             print(frame_idx)
 
-            #cv.imshow('image', masked_image)
-            out.write(masked_image)
+            cv.imshow('image', image)
+            out.write(image)
 
-            #ch = cv.waitKey(1)
-            #if ch == 27:
-            #    break
+            ch = cv.waitKey(1)
+            if ch == 27:
+                break
 
         cap.release()
         out.release()
