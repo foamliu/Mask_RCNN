@@ -3,7 +3,7 @@ import cv2 as cv
 import time
 
 import coco
-import utils
+# import utils
 import model as modellib
 
 
@@ -19,8 +19,8 @@ class App:
         Mask_RCNN_ROOT_DIR = '.'
         COCO_MODEL_PATH = os.path.join(Mask_RCNN_ROOT_DIR, "mask_rcnn_coco.h5")
         # Download COCO trained weights from Releases if needed
-        if not os.path.exists(COCO_MODEL_PATH):
-            utils.download_trained_weights(COCO_MODEL_PATH)
+        # if not os.path.exists(COCO_MODEL_PATH):
+        #     utils.download_trained_weights(COCO_MODEL_PATH)
 
         class InferenceConfig(coco.CocoConfig):
             # Set batch size to 1 since we'll be running inference on
