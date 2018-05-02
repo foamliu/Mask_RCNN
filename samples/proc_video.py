@@ -3,7 +3,6 @@ import sys
 import cv2 as cv
 import time
 
-import coco
 # Root directory of the project
 ROOT_DIR = os.path.abspath("../")
 
@@ -12,6 +11,7 @@ sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn import utils
 import mrcnn.model as modellib
 from mrcnn import visualize
+import coco
 
 
 class App:
